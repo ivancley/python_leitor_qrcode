@@ -1,0 +1,2 @@
+No ambiente MAC foi necessário instalar o pyzbar utilizando o brew 
+brew install pyzbar 
