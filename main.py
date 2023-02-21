@@ -1,4 +1,5 @@
 import cv2
+import time
 from pyzbar.pyzbar import decode
 
 # Abre a webcam
@@ -6,6 +7,7 @@ from pyzbar.pyzbar import decode
 cap = cv2.VideoCapture(0)
 
 while True:
+    #time.sleep(0.3)
     # o metodo cap.read() retorna dois valores 
     # ret ---> indica que a captura foi bem sucedida 
     #          quando retornar false ele sai do laço 
