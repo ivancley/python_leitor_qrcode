@@ -1,21 +1,29 @@
 import cv2
 import time
-from pyzbar.pyzbar import decode
+from pyzbar.pyzbar import decode, ZBarSymbol
 
 # Abre a webcam
 # cap representa a webcam 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
+
+# tentativa de diminuir a qualidade de imagem para melhorar a taxa de atualização
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
 while True:
-    #time.sleep(0.3)
+    # tentativa de aumentar a taxa de atualização da camera  
+    time.sleep(0.00001)
     # o metodo cap.read() retorna dois valores 
     # ret ---> indica que a captura foi bem sucedida 
     #          quando retornar false ele sai do laço 
     # frame -> retorna uma matriz numpy com o frame capturado 
     ret, frame = cap.read()
     
+    if not ret: 
+        continue
+
     # Decodifica o QR Code
-    decoded = decode(frame)
+    decoded = decode(frame, symbols=[ZBarSymbol.QRCODE])
     
     # Desenha o retângulo em volta do QR Code
     for obj in decoded:
